@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://shrimp_uid"]
+
+[ext_resource type="Script" path="res://shrimp.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cc_fbx_uid" path="res://cc.fbx" id="2_mesh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_shrimp"]
+size = Vector3(0.2, 0.2, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shrimp"]
+albedo_color = Color(0.8, 0.4, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_shrimp"]
+material = SubResource("StandardMaterial3D_shrimp")
+size = Vector3(0.2, 0.2, 0.5)
+
+[node name="Shrimp" type="CharacterBody3D"]
+collision_layer = 3
+script = ExtResource("1_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_shrimp")
+
+[node name="cc" parent="." instance=ExtResource("2_mesh")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)

@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=3 uid="uid://dialogue_ui_uid"]
+
+[ext_resource type="Script" path="res://dialogue_ui.gd" id="1_script"]
+
+[node name="DialogueUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -200.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="NameLabel" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 200.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 20
+text = "NPC Name"
+
+[node name="TextLabel" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 580.0
+offset_bottom = 160.0
+text = "This is a line of dialogue."
+autowrap_mode = 2

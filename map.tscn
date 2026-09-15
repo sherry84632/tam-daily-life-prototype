@@ -1,0 +1,417 @@
+[gd_scene format=3 uid="uid://b1m8c7eal5n4"]
+
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://dialogue_ui.tscn" id="2_dialogue"]
+[ext_resource type="PackedScene" path="res://npc.tscn" id="3_npc"]
+[ext_resource type="PackedScene" path="res://inventory_ui.tscn" id="4_inventory"]
+[ext_resource type="PackedScene" path="res://shrimp.tscn" id="5_shrimp"]
+[ext_resource type="PackedScene" path="res://table.tscn" id="6_table"]
+[ext_resource type="PackedScene" uid="uid://opr7qfp6c23a" path="res://cc.fbx" id="7_71pa8"]
+[ext_resource type="PackedScene" path="res://basket_item.tscn" id="7_basket"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
+ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Ground"]
+albedo_color = Color(0.25, 0.6, 0.3, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_BluePillar"]
+albedo_color = Color(0.1, 0.4, 0.85, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Water"]
+transparency = 1
+albedo_color = Color(0.2, 0.5, 0.9, 0.7)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Dirt"]
+albedo_color = Color(0.4, 0.3, 0.1, 1)
+
+[node name="Map" type="Node3D" unique_id=266236703]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1601832420]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1218074847]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 5, 0)
+shadow_enabled = true
+
+[node name="Ground" type="CSGBox3D" parent="." unique_id=1173173400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.755615, -0.5, -19.757782)
+use_collision = true
+size = Vector3(280.33545, 1, 366.04767)
+material = SubResource("StandardMaterial3D_Ground")
+
+[node name="Obstacles" type="Node3D" parent="." unique_id=922427901]
+
+[node name="BluePillar2" type="CSGCylinder3D" parent="Obstacles" unique_id=1885063180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -6)
+use_collision = true
+radius = 1.0
+height = 4.0
+material = SubResource("StandardMaterial3D_BluePillar")
+
+[node name="Pond" type="CSGBox3D" parent="Obstacles" unique_id=917307722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.2505896, 10)
+size = Vector3(10, 1, 10)
+material = SubResource("StandardMaterial3D_Water")
+
+[node name="PondWall1" type="CSGBox3D" parent="Obstacles" unique_id=254627730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.3249154, 4.5)
+use_collision = true
+size = Vector3(12, 1, 1)
+material = SubResource("StandardMaterial3D_Dirt")
+
+[node name="PondWall2" type="CSGBox3D" parent="Obstacles" unique_id=2070243054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.3249154, 15.5)
+use_collision = true
+size = Vector3(12, 1, 1)
+material = SubResource("StandardMaterial3D_Dirt")
+
+[node name="PondWall3" type="CSGBox3D" parent="Obstacles" unique_id=739429961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.3249154, 10)
+use_collision = true
+size = Vector3(1, 1, 10)
+material = SubResource("StandardMaterial3D_Dirt")
+
+[node name="PondWall4" type="CSGBox3D" parent="Obstacles" unique_id=1488458100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0.3249154, 10)
+use_collision = true
+size = Vector3(1, 1, 10)
+material = SubResource("StandardMaterial3D_Dirt")
+
+[node name="Player" parent="." unique_id=888390607 instance=ExtResource("1_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.005867, -0.013459682, 0.7171337)
+
+[node name="DialogueUI" parent="." unique_id=379333722 instance=ExtResource("2_dialogue")]
+
+[node name="InventoryUI" parent="." unique_id=1629587113 instance=ExtResource("4_inventory")]
+
+[node name="NPC" parent="." unique_id=1869200315 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="Stepmother" parent="." unique_id=1474795795 instance=ExtResource("3_npc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+npc_name = "Dì ghẻ"
+dialogue_lines = Array[String](["Làm việc cho tử tế vào, đừng có mà lười biếng!"])
+
+[node name="Table" parent="." unique_id=541154483 instance=ExtResource("6_table")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
+
+[node name="BasketItem" parent="." unique_id=265840260 instance=ExtResource("7_basket")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="Shrimps" type="Node3D" parent="." unique_id=73566542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 10)
+
+[node name="Shrimp1" parent="Shrimps" unique_id=1950368247 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Shrimp2" parent="Shrimps" unique_id=2144481229 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
+
+[node name="Shrimp3" parent="Shrimps" unique_id=46820053 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="Shrimp4" parent="Shrimps" unique_id=1640076524 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+
+[node name="Shrimp5" parent="Shrimps" unique_id=574918634 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="Shrimp6" parent="Shrimps" unique_id=1152055775 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+
+[node name="Shrimp7" parent="Shrimps" unique_id=703445004 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Shrimp8" parent="Shrimps" unique_id=1390536630 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="Shrimp9" parent="Shrimps" unique_id=1909223580 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="Shrimp10" parent="Shrimps" unique_id=462806877 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="Shrimp11" parent="Shrimps" unique_id=318225747 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.7432194, 1, 0.40628433)
+
+[node name="Shrimp12" parent="Shrimps" unique_id=2045319274 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.892725, 1, 1.9306488)
+
+[node name="Shrimp13" parent="Shrimps" unique_id=2006547797 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.78114414, 1, -1.22966)
+
+[node name="Shrimp14" parent="Shrimps" unique_id=1010738649 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.5093908, 1, 2.7189236)
+
+[node name="Shrimp15" parent="Shrimps" unique_id=2135070923 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.8548002, 1, -2.7540236)
+
+[node name="Shrimp16" parent="Shrimps" unique_id=1771313847 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -1.5694189, 1, 3.1724558)
+
+[node name="Shrimp17" parent="Shrimps" unique_id=594410165 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -3.3763394, 1, 0.577261)
+
+[node name="Shrimp18" parent="Shrimps" unique_id=383434795 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.914196, 1, 4.5258446)
+
+[node name="Shrimp19" parent="Shrimps" unique_id=1972869576 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -2.3055081, 1, -2.8656044)
+
+[node name="Shrimp20" parent="Shrimps" unique_id=1987946155 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
+
+[node name="Shrimp21" parent="Shrimps" unique_id=206658076 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Shrimp22" parent="Shrimps" unique_id=1830374915 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
+
+[node name="Shrimp23" parent="Shrimps" unique_id=1521777650 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="Shrimp24" parent="Shrimps" unique_id=1313821142 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+
+[node name="Shrimp25" parent="Shrimps" unique_id=1556649432 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="Shrimp26" parent="Shrimps" unique_id=1828240714 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+
+[node name="Shrimp27" parent="Shrimps" unique_id=1583993809 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Shrimp28" parent="Shrimps" unique_id=1623898204 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="Shrimp29" parent="Shrimps" unique_id=284169698 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="Shrimp30" parent="Shrimps" unique_id=1606611826 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="Shrimp31" parent="Shrimps" unique_id=1400827030 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.7432194, 1, 0.40628433)
+
+[node name="Shrimp32" parent="Shrimps" unique_id=589697927 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.892725, 1, 1.9306488)
+
+[node name="Shrimp33" parent="Shrimps" unique_id=1367989910 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.78114414, 1, -1.22966)
+
+[node name="Shrimp34" parent="Shrimps" unique_id=399707443 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.5093908, 1, 2.7189236)
+
+[node name="Shrimp35" parent="Shrimps" unique_id=1865125845 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.8548002, 1, -2.7540236)
+
+[node name="Shrimp36" parent="Shrimps" unique_id=1578390225 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -1.5694189, 1, 3.1724558)
+
+[node name="Shrimp37" parent="Shrimps" unique_id=179104906 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -3.3763394, 1, 0.577261)
+
+[node name="Shrimp38" parent="Shrimps" unique_id=1502843370 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.914196, 1, 4.5258446)
+
+[node name="Shrimp39" parent="Shrimps" unique_id=1957520018 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -2.3055081, 1, -2.8656044)
+
+[node name="Shrimp40" parent="Shrimps" unique_id=1653669068 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
+
+[node name="Shrimp41" parent="Shrimps" unique_id=333962434 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Shrimp42" parent="Shrimps" unique_id=95599586 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
+
+[node name="Shrimp43" parent="Shrimps" unique_id=1709137229 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="Shrimp44" parent="Shrimps" unique_id=263408047 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+
+[node name="Shrimp45" parent="Shrimps" unique_id=1692546476 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="Shrimp46" parent="Shrimps" unique_id=107380721 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+
+[node name="Shrimp47" parent="Shrimps" unique_id=1091254197 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Shrimp48" parent="Shrimps" unique_id=1171310199 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="Shrimp49" parent="Shrimps" unique_id=1690975292 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="Shrimp50" parent="Shrimps" unique_id=1011306198 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="Shrimp51" parent="Shrimps" unique_id=1510143908 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.7432194, 1, 0.40628433)
+
+[node name="Shrimp52" parent="Shrimps" unique_id=1416419290 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.892725, 1, 1.9306488)
+
+[node name="Shrimp53" parent="Shrimps" unique_id=1653251564 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.78114414, 1, -1.22966)
+
+[node name="Shrimp54" parent="Shrimps" unique_id=242009219 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.5093908, 1, 2.7189236)
+
+[node name="Shrimp55" parent="Shrimps" unique_id=962880474 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.8548002, 1, -2.7540236)
+
+[node name="Shrimp56" parent="Shrimps" unique_id=1921917754 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -1.5694189, 1, 3.1724558)
+
+[node name="Shrimp57" parent="Shrimps" unique_id=1100020982 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -3.3763394, 1, 0.577261)
+
+[node name="Shrimp58" parent="Shrimps" unique_id=2089404750 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.914196, 1, 4.5258446)
+
+[node name="Shrimp59" parent="Shrimps" unique_id=2046044041 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -2.3055081, 1, -2.8656044)
+
+[node name="Shrimp60" parent="Shrimps" unique_id=1353926296 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
+
+[node name="Shrimp61" parent="Shrimps" unique_id=1370088941 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Shrimp62" parent="Shrimps" unique_id=1532670312 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
+
+[node name="Shrimp63" parent="Shrimps" unique_id=855153600 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="Shrimp64" parent="Shrimps" unique_id=1986434389 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+
+[node name="Shrimp65" parent="Shrimps" unique_id=1737023801 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="Shrimp66" parent="Shrimps" unique_id=1356208009 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+
+[node name="Shrimp67" parent="Shrimps" unique_id=61679928 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Shrimp68" parent="Shrimps" unique_id=1609200756 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="Shrimp69" parent="Shrimps" unique_id=738126280 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="Shrimp70" parent="Shrimps" unique_id=1465727876 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="Shrimp71" parent="Shrimps" unique_id=660498852 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.7432194, 1, 0.40628433)
+
+[node name="Shrimp72" parent="Shrimps" unique_id=706452087 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.892725, 1, 1.9306488)
+
+[node name="Shrimp73" parent="Shrimps" unique_id=1462576759 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.78114414, 1, -1.22966)
+
+[node name="Shrimp74" parent="Shrimps" unique_id=183204709 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.5093908, 1, 2.7189236)
+
+[node name="Shrimp75" parent="Shrimps" unique_id=2054691673 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.8548002, 1, -2.7540236)
+
+[node name="Shrimp76" parent="Shrimps" unique_id=957948304 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -1.5694189, 1, 3.1724558)
+
+[node name="Shrimp77" parent="Shrimps" unique_id=405412521 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -3.3763394, 1, 0.577261)
+
+[node name="Shrimp78" parent="Shrimps" unique_id=1856639753 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.914196, 1, 4.5258446)
+
+[node name="Shrimp79" parent="Shrimps" unique_id=1309450194 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -2.3055081, 1, -2.8656044)
+
+[node name="Shrimp80" parent="Shrimps" unique_id=491097955 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
+
+[node name="Shrimp81" parent="Shrimps" unique_id=613699253 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Shrimp82" parent="Shrimps" unique_id=1228260240 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)
+
+[node name="Shrimp83" parent="Shrimps" unique_id=2056820017 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 1)
+
+[node name="Shrimp84" parent="Shrimps" unique_id=1455128964 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -2)
+
+[node name="Shrimp85" parent="Shrimps" unique_id=2037235062 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+
+[node name="Shrimp86" parent="Shrimps" unique_id=1649318675 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, 3)
+
+[node name="Shrimp87" parent="Shrimps" unique_id=36739978 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 4)
+
+[node name="Shrimp88" parent="Shrimps" unique_id=2127226212 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 1)
+
+[node name="Shrimp89" parent="Shrimps" unique_id=79588009 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 2)
+
+[node name="Shrimp90" parent="Shrimps" unique_id=240804917 instance=ExtResource("5_shrimp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -3)
+
+[node name="Shrimp91" parent="Shrimps" unique_id=295631913 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.7432194, 1, 0.40628433)
+
+[node name="Shrimp92" parent="Shrimps" unique_id=1386400403 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.892725, 1, 1.9306488)
+
+[node name="Shrimp93" parent="Shrimps" unique_id=247368913 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -0.78114414, 1, -1.22966)
+
+[node name="Shrimp94" parent="Shrimps" unique_id=1021620533 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.5093908, 1, 2.7189236)
+
+[node name="Shrimp95" parent="Shrimps" unique_id=1397937133 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.8548002, 1, -2.7540236)
+
+[node name="Shrimp96" parent="Shrimps" unique_id=1458212159 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -1.5694189, 1, 3.1724558)
+
+[node name="Shrimp97" parent="Shrimps" unique_id=1038523124 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -3.3763394, 1, 0.577261)
+
+[node name="Shrimp98" parent="Shrimps" unique_id=1756990507 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 0.914196, 1, 4.5258446)
+
+[node name="Shrimp99" parent="Shrimps" unique_id=1401419823 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, -2.3055081, 1, -2.8656044)
+
+[node name="Shrimp100" parent="Shrimps" unique_id=571561912 instance=ExtResource("5_shrimp")]
+transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
+
+[node name="cc" parent="." unique_id=1785719288 instance=ExtResource("7_71pa8")]
+transform = Transform3D(0.12974487, 0, 0, 0, 0.2218256, 0, 0, 0, 0.55742186, -6.1847277, 3.9197657, 5.32451)
