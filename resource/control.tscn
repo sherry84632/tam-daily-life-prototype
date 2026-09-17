@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://b2m3noe2q4722"]
+
+[ext_resource type="Theme" uid="uid://btd0iusd7s3bx" path="res://resource/menu_theme.tres" id="1_oca3h"]
+[ext_resource type="Script" uid="uid://3p2d4yuauakg" path="res://resource/control.gd" id="2_2ggy6"]
+[ext_resource type="Texture2D" uid="uid://cc3skgh64jkeb" path="res://asset/main_menu.png" id="2_rlvpo"]
+[ext_resource type="FontFile" uid="uid://dmg23o2us18xd" path="res://user_interface/menu/Font/Rye-Regular.ttf" id="3_rlvpo"]
+[ext_resource type="PackedScene" uid="uid://c1m2levrvvisj" path="res://user_interface/buttons/play_button.tscn" id="4_d5tsb"]
+[ext_resource type="FontFile" uid="uid://cogbuw6a1oume" path="res://user_interface/menu/Font/PatrickHand-Regular.ttf" id="5_u203c"]
+[ext_resource type="Texture2D" uid="uid://b6o0n7sgm7rx8" path="res://user_interface/buttons/background_button/title-removebg-preview.png" id="6_d5tsb"]
+[ext_resource type="Script" uid="uid://b6rpdvscwah3t" path="res://user_interface/buttons/play_button.gd" id="7_2ggy6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1v8o"]
+texture = ExtResource("6_d5tsb")
+
+[node name="Control" type="Control" unique_id=860641482]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_oca3h")
+script = ExtResource("2_2ggy6")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=468822220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 8.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rlvpo")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=175315592]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -56.0
+offset_right = -418.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1480189890]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Tittle" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=131618190]
+custom_minimum_size = Vector2(550, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/default_color = Color(0.8509804, 0.5803922, 0.1254902, 1)
+theme_override_colors/font_outline_color = Color(0.41960785, 0.20784314, 0.12156863, 1)
+theme_override_colors/font_shadow_color = Color(0.24705882, 0.12941177, 0.09411765, 1)
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 3
+theme_override_fonts/normal_font = ExtResource("3_rlvpo")
+theme_override_font_sizes/normal_font_size = 64
+text = "Tam's Daily Life"
+fit_content = true
+
+[node name="PlayButton" parent="PanelContainer/VBoxContainer" unique_id=1924598979 instance=ExtResource("4_d5tsb")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_focus_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_pressed_color = Color(0.72156864, 0.26666668, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.93333334, 0.4392157, 0.41568628, 1)
+theme_override_colors/font_outline_color = Color(0.6627451, 0.26666668, 0.25882354, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_u203c")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1v8o")
+script = ExtResource("7_2ggy6")
+
+[node name="OptionButton" parent="PanelContainer/VBoxContainer" unique_id=821752309 instance=ExtResource("4_d5tsb")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_focus_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_pressed_color = Color(0.72156864, 0.26666668, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.93333334, 0.4392157, 0.41568628, 1)
+theme_override_colors/font_outline_color = Color(0.6627451, 0.26666668, 0.25882354, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_u203c")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1v8o")
+text = "Option"
+script = ExtResource("7_2ggy6")
+
+[node name="QuitButton" parent="PanelContainer/VBoxContainer" unique_id=809909163 instance=ExtResource("4_d5tsb")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_focus_color = Color(0.84705883, 0.3529412, 0.34509805, 1)
+theme_override_colors/font_pressed_color = Color(0.72156864, 0.26666668, 0.27058825, 1)
+theme_override_colors/font_hover_color = Color(0.93333334, 0.4392157, 0.41568628, 1)
+theme_override_colors/font_outline_color = Color(0.6627451, 0.26666668, 0.25882354, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("5_u203c")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_n1v8o")
+text = "Quit"
+script = ExtResource("7_2ggy6")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
