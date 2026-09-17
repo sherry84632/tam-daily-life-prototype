@@ -46,7 +46,7 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1173173400]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.220427, -0.40879178, -21.707394)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.755615, -0.5, -19.757782)
 use_collision = true
 size = Vector3(280.33545, 1, 366.04767)
 material = SubResource("StandardMaterial3D_Ground")
