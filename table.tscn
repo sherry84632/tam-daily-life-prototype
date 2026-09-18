@@ -1,19 +1,22 @@
 [gd_scene load_steps=6 format=3 uid="uid://table_uid"]
 
 [ext_resource type="Script" path="res://table.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://props/basket_visual.tscn" id="2_basket_visual"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_table"]
 size = Vector3(1.5, 1, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_table"]
-albedo_color = Color(0.6, 0.4, 0.2, 1)
+albedo_color = Color(0.38, 0.22, 0.12, 1)
+roughness = 0.95
 
-[sub_resource type="BoxMesh" id="BoxMesh_table"]
+[sub_resource type="BoxMesh" id="TableTopMesh"]
 material = SubResource("StandardMaterial3D_table")
-size = Vector3(1.5, 1, 1.5)
+size = Vector3(1.55, 0.16, 1.35)
 
-[sub_resource type="BoxMesh" id="BoxMesh_basket"]
-size = Vector3(0.5, 0.4, 0.5)
+[sub_resource type="BoxMesh" id="TableLegMesh"]
+material = SubResource("StandardMaterial3D_table")
+size = Vector3(0.14, 0.84, 0.14)
 
 [node name="Table" type="StaticBody3D"]
 collision_layer = 3
@@ -23,11 +26,26 @@ script = ExtResource("1_script")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_table")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("BoxMesh_table")
+[node name="TableTop" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91, 0)
+mesh = SubResource("TableTopMesh")
 
-[node name="BasketMesh" type="MeshInstance3D" parent="."]
+[node name="LegFrontLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61, 0.43, 0.5)
+mesh = SubResource("TableLegMesh")
+
+[node name="LegFrontRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61, 0.43, 0.5)
+mesh = SubResource("TableLegMesh")
+
+[node name="LegBackLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.61, 0.43, -0.5)
+mesh = SubResource("TableLegMesh")
+
+[node name="LegBackRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61, 0.43, -0.5)
+mesh = SubResource("TableLegMesh")
+
+[node name="BasketMesh" parent="." instance=ExtResource("2_basket_visual")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
-mesh = SubResource("BoxMesh_basket")
 visible = false

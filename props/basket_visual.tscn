@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="StandardMaterial3D" id="WickerMaterial"]
+albedo_color = Color(0.62, 0.38, 0.16, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="WickerLightMaterial"]
+albedo_color = Color(0.79, 0.56, 0.27, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="BasketInsideMaterial"]
+albedo_color = Color(0.2, 0.11, 0.055, 1)
+roughness = 1.0
+
+[sub_resource type="CylinderMesh" id="BasketBodyMesh"]
+material = SubResource("WickerLightMaterial")
+top_radius = 0.33
+bottom_radius = 0.22
+height = 0.38
+radial_segments = 14
+rings = 4
+
+[sub_resource type="CylinderMesh" id="BasketInsideMesh"]
+material = SubResource("BasketInsideMaterial")
+top_radius = 0.275
+bottom_radius = 0.275
+height = 0.025
+radial_segments = 14
+rings = 1
+
+[sub_resource type="TorusMesh" id="BasketRingMesh"]
+material = SubResource("WickerMaterial")
+inner_radius = 0.285
+outer_radius = 0.335
+rings = 14
+ring_segments = 6
+
+[node name="BasketVisual" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("BasketBodyMesh")
+
+[node name="Inside" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.202, 0)
+mesh = SubResource("BasketInsideMesh")
+
+[node name="Rim" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205, 0)
+mesh = SubResource("BasketRingMesh")
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.72, -0.7, 0, 0.7, 0.72, 0, 0.34, 0)
+mesh = SubResource("BasketRingMesh")

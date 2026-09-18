@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://shrimp_uid"]
 
 [ext_resource type="Script" path="res://shrimp.gd" id="1_script"]
-[ext_resource type="PackedScene" uid="uid://cc_fbx_uid" path="res://cc.fbx" id="2_mesh"]
+[ext_resource type="PackedScene" path="res://cc.fbx" id="2_mesh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_shrimp"]
 size = Vector3(0.2, 0.2, 0.5)

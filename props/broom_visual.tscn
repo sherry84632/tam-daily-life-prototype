@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://broom_visual_uid"]
+
+[sub_resource type="StandardMaterial3D" id="BambooHandleMat"]
+albedo_color = Color(0.76, 0.61, 0.38, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="StrawBrushMat"]
+albedo_color = Color(0.83, 0.69, 0.43, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="CordMat"]
+albedo_color = Color(0.65, 0.22, 0.18, 1)
+roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="HandleMesh"]
+material = SubResource("BambooHandleMat")
+top_radius = 0.02
+bottom_radius = 0.022
+height = 1.05
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="BrushMesh"]
+material = SubResource("StrawBrushMat")
+top_radius = 0.035
+bottom_radius = 0.14
+height = 0.42
+radial_segments = 10
+
+[sub_resource type="CylinderMesh" id="CordMesh"]
+material = SubResource("CordMat")
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.05
+radial_segments = 8
+
+[node name="BroomVisual" type="Node3D"]
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72, 0)
+mesh = SubResource("HandleMesh")
+
+[node name="Brush" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
+mesh = SubResource("BrushMesh")
+
+[node name="Cord" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+mesh = SubResource("CordMesh")

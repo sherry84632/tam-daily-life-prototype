@@ -1,18 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://basket_item_uid"]
+[gd_scene load_steps=4 format=3 uid="uid://basket_item_uid"]
 
 [ext_resource type="Script" path="res://basket_item.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://props/basket_visual.tscn" id="2_basket_visual"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_basket"]
 size = Vector3(0.6, 0.4, 0.6)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_basket"]
-albedo_color = Color(0.7, 0.5, 0.2, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_basket"]
-material = SubResource("StandardMaterial3D_basket")
-top_radius = 0.3
-bottom_radius = 0.2
-height = 0.4
 
 [node name="BasketItem" type="StaticBody3D"]
 collision_layer = 3
@@ -22,6 +14,5 @@ script = ExtResource("1_script")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("BoxShape3D_basket")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="BasketVisual" parent="." instance=ExtResource("2_basket_visual")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-mesh = SubResource("CylinderMesh_basket")

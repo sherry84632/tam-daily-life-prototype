@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://level1_house_uid"]
+
+[ext_resource type="Script" path="res://level1_house.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://world/house_environment.tscn" id="3_house_env"]
+[ext_resource type="PackedScene" uid="uid://trash_pile_uid" path="res://props/trash_pile.tscn" id="4_trash_pile"]
+[ext_resource type="PackedScene" uid="uid://broom_visual_uid" path="res://props/broom_visual.tscn" id="5_broom"]
+[ext_resource type="PackedScene" path="res://dialogue_ui.tscn" id="6_dialogue"]
+[ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="7_pause_menu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.28, 0.52, 0.78, 1)
+sky_horizon_color = Color(0.85, 0.88, 0.86, 1)
+ground_bottom_color = Color(0.24, 0.22, 0.16, 1)
+ground_horizon_color = Color(0.72, 0.74, 0.65, 1)
+sun_angle_max = 20.0
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_color = Color(0.82, 0.8, 0.72, 1)
+ambient_light_energy = 0.75
+reflected_light_source = 2
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Quest"]
+bg_color = Color(0.12, 0.08, 0.05, 0.82)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.82, 0.58, 0.28, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 4
+shadow_offset = Vector2(0, 2)
+
+[node name="Level1House" type="Node3D"]
+script = ExtResource("1_script")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 10, 15, 10)
+light_color = Color(1, 0.96, 0.88, 1)
+light_energy = 1.15
+shadow_enabled = true
+
+[node name="HouseEnvironment" parent="." instance=ExtResource("3_house_env")]
+
+[node name="BroomProp" parent="." instance=ExtResource("5_broom")]
+transform = Transform3D(0.965926, 0.224144, 0.12941, -0.059391, 0.683013, -0.728005, -0.251966, 0.695327, 0.673013, -3.3, 0.5, -0.85)
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0.2)
+
+[node name="TrashPiles" type="Node3D" parent="."]
+
+[node name="TrashPile1" parent="TrashPiles" instance=ExtResource("4_trash_pile")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 0.05, 2.5)
+
+[node name="TrashPile2" parent="TrashPiles" instance=ExtResource("4_trash_pile")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 3.5, 0.05, 3.8)
+
+[node name="TrashPile3" parent="TrashPiles" instance=ExtResource("4_trash_pile")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -0.6, 0.05, 7.2)
+
+[node name="DialogueUI" parent="." instance=ExtResource("6_dialogue")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("7_pause_menu")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="QuestPanel" type="PanelContainer" parent="HUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -440.0
+offset_top = 28.0
+offset_right = -28.0
+offset_bottom = 120.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_Quest")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/QuestPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/QuestPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="QuestHeader" type="Label" parent="HUD/QuestPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.82, 0.45, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_font_sizes/font_size = 18
+text = "NHIỆM VỤ - MÀN 1"
+
+[node name="QuestText" type="Label" parent="HUD/QuestPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.95)
+theme_override_font_sizes/font_size = 16
+text = "Quét sạch các đống rác trong sân: 0/3"
+
+[node name="FadeOverlay" type="ColorRect" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

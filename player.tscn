@@ -1,19 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://player_uid"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://props/basket_visual.tscn" id="2_basket_visual"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_player"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_basket"]
-albedo_color = Color(0.7, 0.5, 0.2, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_basket"]
-material = SubResource("StandardMaterial3D_basket")
-top_radius = 0.3
-bottom_radius = 0.2
-height = 0.4
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_script")
@@ -22,10 +12,6 @@ script = ExtResource("1_script")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_player")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_player")
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -33,9 +19,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 target_position = Vector3(0, 0, -4)
 collision_mask = 2
 
-[node name="EquippedBasket" type="MeshInstance3D" parent="Camera3D"]
+[node name="EquippedBasket" parent="Camera3D" instance=ExtResource("2_basket_visual")]
 transform = Transform3D(0.866025, -0.25, 0.433013, 0.5, 0.433013, -0.75, 0, 0.866025, 0.5, 0.5, -0.4, -0.6)
-mesh = SubResource("CylinderMesh_basket")
 visible = false
 
 [node name="HUD" type="CanvasLayer" parent="."]

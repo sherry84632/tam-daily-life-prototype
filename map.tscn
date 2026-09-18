@@ -6,13 +6,16 @@
 [ext_resource type="PackedScene" path="res://inventory_ui.tscn" id="4_inventory"]
 [ext_resource type="PackedScene" path="res://shrimp.tscn" id="5_shrimp"]
 [ext_resource type="PackedScene" path="res://table.tscn" id="6_table"]
-[ext_resource type="PackedScene" uid="uid://opr7qfp6c23a" path="res://cc.fbx" id="7_71pa8"]
 [ext_resource type="PackedScene" path="res://basket_item.tscn" id="7_basket"]
 [ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="9_gqbix"]
+[ext_resource type="PackedScene" path="res://world/rural_environment.tscn" id="10_environment"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
-sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
-ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+sky_top_color = Color(0.23, 0.49, 0.72, 1)
+sky_horizon_color = Color(0.82, 0.9, 0.91, 1)
+ground_bottom_color = Color(0.19, 0.28, 0.18, 1)
+ground_horizon_color = Color(0.66, 0.75, 0.62, 1)
+sun_angle_max = 18.0
 
 [sub_resource type="Sky" id="Sky_1"]
 sky_material = SubResource("ProceduralSkyMaterial_1")
@@ -20,22 +23,35 @@ sky_material = SubResource("ProceduralSkyMaterial_1")
 [sub_resource type="Environment" id="Environment_1"]
 background_mode = 2
 sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_color = Color(0.75, 0.83, 0.78, 1)
+ambient_light_energy = 0.65
+reflected_light_source = 2
 tonemap_mode = 2
 glow_enabled = true
+fog_enabled = false
+fog_light_color = Color(0.73, 0.81, 0.75, 1)
+fog_light_energy = 0.35
+fog_density = 0.0025
+fog_height = 1.0
+fog_height_density = 0.08
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Ground"]
-albedo_color = Color(0.25, 0.6, 0.3, 1)
-roughness = 0.8
+albedo_color = Color(0.22, 0.39, 0.19, 1)
+roughness = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_BluePillar"]
 albedo_color = Color(0.1, 0.4, 0.85, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Water"]
 transparency = 1
-albedo_color = Color(0.2, 0.5, 0.9, 0.7)
+albedo_color = Color(0.16, 0.49, 0.55, 0.82)
+metallic = 0.1
+roughness = 0.22
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_Dirt"]
-albedo_color = Color(0.4, 0.3, 0.1, 1)
+albedo_color = Color(0.38, 0.25, 0.13, 1)
+roughness = 1.0
 
 [node name="Map" type="Node3D" unique_id=266236703]
 
@@ -44,7 +60,12 @@ environment = SubResource("Environment_1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1218074847]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 5, 0)
+light_color = Color(1, 0.91, 0.76, 1)
+light_energy = 1.15
 shadow_enabled = true
+directional_shadow_max_distance = 70.0
+
+[node name="RuralEnvironment" parent="." instance=ExtResource("10_environment")]
 
 [node name="Ground" type="CSGBox3D" parent="." unique_id=1173173400]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.220427, -0.40879178, -21.707394)
@@ -56,6 +77,7 @@ material = SubResource("StandardMaterial3D_Ground")
 
 [node name="BluePillar2" type="CSGCylinder3D" parent="Obstacles" unique_id=1885063180]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2, -6)
+visible = false
 use_collision = true
 radius = 1.0
 height = 4.0
@@ -68,24 +90,28 @@ material = SubResource("StandardMaterial3D_Water")
 
 [node name="PondWall1" type="CSGBox3D" parent="Obstacles" unique_id=254627730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.3249154, 4.5)
+visible = false
 use_collision = true
 size = Vector3(12, 1, 1)
 material = SubResource("StandardMaterial3D_Dirt")
 
 [node name="PondWall2" type="CSGBox3D" parent="Obstacles" unique_id=2070243054]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.3249154, 15.5)
+visible = false
 use_collision = true
 size = Vector3(12, 1, 1)
 material = SubResource("StandardMaterial3D_Dirt")
 
 [node name="PondWall3" type="CSGBox3D" parent="Obstacles" unique_id=739429961]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.3249154, 10)
+visible = false
 use_collision = true
 size = Vector3(1, 1, 10)
 material = SubResource("StandardMaterial3D_Dirt")
 
 [node name="PondWall4" type="CSGBox3D" parent="Obstacles" unique_id=1488458100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0.3249154, 10)
+visible = false
 use_collision = true
 size = Vector3(1, 1, 10)
 material = SubResource("StandardMaterial3D_Dirt")
@@ -102,6 +128,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="Stepmother" parent="." unique_id=1474795795 instance=ExtResource("3_npc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+shirt_color = Color(0.52, 0.18, 0.17, 1)
+skirt_color = Color(0.22, 0.12, 0.19, 1)
+hair_color = Color(0.09, 0.055, 0.035, 1)
 npc_name = "Dì ghẻ"
 dialogue_lines = Array[String](["Làm việc cho tử tế vào, đừng có mà lười biếng!"])
 
@@ -413,8 +442,5 @@ transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.2825
 
 [node name="Shrimp100" parent="Shrimps" unique_id=571561912 instance=ExtResource("5_shrimp")]
 transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.28255665, 3.9035282, 1, 0.5178652)
-
-[node name="cc" parent="." unique_id=1785719288 instance=ExtResource("7_71pa8")]
-transform = Transform3D(0.12974487, 0, 0, 0, 0.2218256, 0, 0, 0, 0.55742186, -6.1847277, 3.9197657, 5.32451)
 
 [node name="PauseMenu" parent="." unique_id=2095433642 instance=ExtResource("9_gqbix")]

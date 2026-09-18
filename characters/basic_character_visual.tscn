@@ -1,0 +1,160 @@
+[gd_scene load_steps=16 format=3]
+
+[sub_resource type="StandardMaterial3D" id="SkinMaterial"]
+albedo_color = Color(0.72, 0.47, 0.31, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="HairMaterial"]
+albedo_color = Color(0.075, 0.055, 0.045, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="ShirtMaterial"]
+albedo_color = Color(0.18, 0.48, 0.43, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="SkirtMaterial"]
+albedo_color = Color(0.18, 0.25, 0.3, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="EyeMaterial"]
+albedo_color = Color(0.025, 0.02, 0.018, 1)
+roughness = 0.8
+
+[sub_resource type="CylinderMesh" id="BodyMesh"]
+material = SubResource("ShirtMaterial")
+top_radius = 0.29
+bottom_radius = 0.36
+height = 0.62
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CylinderMesh" id="SkirtMesh"]
+material = SubResource("SkirtMaterial")
+top_radius = 0.34
+bottom_radius = 0.45
+height = 0.74
+radial_segments = 12
+rings = 1
+
+[sub_resource type="SphereMesh" id="HeadMesh"]
+material = SubResource("SkinMaterial")
+radius = 0.235
+height = 0.47
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereMesh" id="HairCapMesh"]
+material = SubResource("HairMaterial")
+radius = 0.25
+height = 0.5
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereMesh" id="EyeMesh"]
+material = SubResource("EyeMaterial")
+radius = 0.026
+height = 0.052
+radial_segments = 10
+rings = 5
+
+[sub_resource type="SphereMesh" id="NoseMesh"]
+material = SubResource("SkinMaterial")
+radius = 0.035
+height = 0.07
+radial_segments = 10
+rings = 5
+
+[sub_resource type="CapsuleMesh" id="ArmMesh"]
+material = SubResource("ShirtMaterial")
+radius = 0.09
+height = 0.62
+radial_segments = 10
+rings = 3
+
+[sub_resource type="SphereMesh" id="HandMesh"]
+material = SubResource("SkinMaterial")
+radius = 0.09
+height = 0.18
+radial_segments = 10
+rings = 5
+
+[sub_resource type="CapsuleMesh" id="LegMesh"]
+material = SubResource("SkinMaterial")
+radius = 0.105
+height = 0.48
+radial_segments = 10
+rings = 3
+
+[sub_resource type="BoxMesh" id="SandalMesh"]
+material = SubResource("HairMaterial")
+size = Vector3(0.22, 0.07, 0.35)
+
+[node name="CharacterVisual" type="Node3D"]
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+mesh = SubResource("BodyMesh")
+
+[node name="Skirt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.53, 0)
+mesh = SubResource("SkirtMesh")
+
+[node name="Head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76, 0.025)
+mesh = SubResource("HeadMesh")
+
+[node name="HairCap" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.06, 0, 0, 0, 0.72, 0, 0, 0, 1.03, 0, 1.91, -0.01)
+mesh = SubResource("HairCapMesh")
+
+[node name="HairBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.82, 0, 0, 0, 1.16, 0, 0, 0, 0.55, 0, 1.69, -0.17)
+mesh = SubResource("HairCapMesh")
+
+[node name="Bun" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.52, 0, 0, 0, 0.52, 0, 0, 0, 0.52, 0, 2.02, -0.15)
+mesh = SubResource("HairCapMesh")
+
+[node name="EyeLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.55, -0.082, 1.79, 0.242)
+mesh = SubResource("EyeMesh")
+
+[node name="EyeRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.55, 0.082, 1.79, 0.242)
+mesh = SubResource("EyeMesh")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 1.72, 0.253)
+mesh = SubResource("NoseMesh")
+
+[node name="ArmLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0, 1, -0.39, 1.13, 0)
+mesh = SubResource("ArmMesh")
+
+[node name="ArmRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.984808, -0.173648, 0, 0.173648, 0.984808, 0, 0, 0, 1, 0.39, 1.13, 0)
+mesh = SubResource("ArmMesh")
+
+[node name="HandLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44, 0.79, 0)
+mesh = SubResource("HandMesh")
+
+[node name="HandRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44, 0.79, 0)
+mesh = SubResource("HandMesh")
+
+[node name="LegLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.2, 0)
+mesh = SubResource("LegMesh")
+
+[node name="LegRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.2, 0)
+mesh = SubResource("LegMesh")
+
+[node name="SandalLeft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.055, 0.06)
+mesh = SubResource("SandalMesh")
+
+[node name="SandalRight" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.055, 0.06)
+mesh = SubResource("SandalMesh")

@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://trash_pile_uid"]
+
+[ext_resource type="Script" path="res://props/trash_pile.gd" id="1_script"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pile"]
+height = 0.5
+radius = 0.65
+
+[sub_resource type="StandardMaterial3D" id="DryEarthMat"]
+albedo_color = Color(0.38, 0.26, 0.16, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="DryLeafMat1"]
+albedo_color = Color(0.72, 0.5, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="DryLeafMat2"]
+albedo_color = Color(0.55, 0.35, 0.18, 1)
+roughness = 0.95
+
+[sub_resource type="StandardMaterial3D" id="DryTwigMat"]
+albedo_color = Color(0.28, 0.18, 0.1, 1)
+roughness = 0.95
+
+[sub_resource type="SphereMesh" id="MoundMesh"]
+material = SubResource("DryEarthMat")
+radius = 0.45
+height = 0.25
+radial_segments = 12
+rings = 4
+
+[sub_resource type="BoxMesh" id="LeafMesh"]
+size = Vector3(0.25, 0.02, 0.14)
+
+[sub_resource type="CylinderMesh" id="TwigMesh"]
+material = SubResource("DryTwigMat")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.4
+radial_segments = 6
+
+[node name="TrashPile" type="StaticBody3D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("1_script")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_pile")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Mound" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+mesh = SubResource("MoundMesh")
+
+[node name="Leaf1" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.866025, 0.15, 0.476314, 0, 0.953717, -0.300706, -0.5, 0.259808, 0.825944, -0.15, 0.14, 0.1)
+mesh = SubResource("LeafMesh")
+surface_material_override/0 = SubResource("DryLeafMat1")
+
+[node name="Leaf2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(-0.707107, 0.2, -0.678129, 0, 0.958924, 0.283662, 0.707107, 0.2, -0.678129, 0.18, 0.12, -0.12)
+mesh = SubResource("LeafMesh")
+surface_material_override/0 = SubResource("DryLeafMat2")
+
+[node name="Leaf3" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.5, -0.2, 0.842615, 0.2, 0.975773, 0.113009, -0.842615, 0.113009, 0.527845, 0.12, 0.11, 0.22)
+mesh = SubResource("LeafMesh")
+surface_material_override/0 = SubResource("DryLeafMat1")
+
+[node name="Leaf4" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.258819, 0, -0.965926, 0.167732, 0.984808, 0.044943, 0.951252, -0.173648, 0.254887, -0.22, 0.08, -0.18)
+mesh = SubResource("LeafMesh")
+surface_material_override/0 = SubResource("DryLeafMat2")
+
+[node name="Leaf5" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 0.02, 0.18, 0.02)
+mesh = SubResource("LeafMesh")
+surface_material_override/0 = SubResource("DryLeafMat1")
+
+[node name="Twig1" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(0.866025, -0.5, 0, 0.433013, 0.75, -0.5, 0.25, 0.433013, 0.866025, 0.05, 0.12, -0.05)
+mesh = SubResource("TwigMesh")
+
+[node name="Twig2" type="MeshInstance3D" parent="Visual"]
+transform = Transform3D(-0.5, 0.866025, 0, -0.612372, -0.353553, -0.707107, -0.612372, -0.353553, 0.707107, -0.1, 0.1, 0.15)
+mesh = SubResource("TwigMesh")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+billboard = 1
+double_sided = false
+text = "[F] Quét rác"
+font_size = 28
+outline_size = 6
+outline_modulate = Color(0, 0, 0, 0.85)
