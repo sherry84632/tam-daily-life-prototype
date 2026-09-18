@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://c201kqm66rjry"]
+
+[ext_resource type="Script" uid="uid://giqf3oj7amaw" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Texture2D" uid="uid://c2w25nj8l0f0r" path="res://user_interface/PauseMenu/89adfe26-cd3c-417c-9837-b3cf0f2fe2d7.png" id="2_p81d2"]
+[ext_resource type="FontFile" uid="uid://cogbuw6a1oume" path="res://user_interface/menu/Font/PatrickHand-Regular.ttf" id="3_2nc7s"]
+[ext_resource type="Texture2D" uid="uid://cybi8shavvkaj" path="res://user_interface/buttons/background_button/89adfe26-cd3c-417c-9837-b3cf0f2fe2d7 (1).png" id="4_d3xb4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xepy2"]
+texture = ExtResource("2_p81d2")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w1foh"]
+texture = ExtResource("4_d3xb4")
+
+[node name="PauseMenu" type="Control" unique_id=2095433642]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdmo1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=587129786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23137255, 0.14117648, 0.12156863, 0.4509804)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1016085478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -7.0
+offset_top = 4.0
+offset_right = -7.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1162564419]
+custom_minimum_size = Vector2(600, 500)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_xepy2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=267526887]
+custom_minimum_size = Vector2(450, 450)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1210715951]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.78431374, 0.4745098, 0.09411765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.99607843)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_2nc7s")
+theme_override_font_sizes/font_size = 56
+text = "Paused"
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1607553297]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99215686, 0.12941177, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_w1foh")
+text = "Resume"
+
+[node name="OptionButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=1453659353]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99215686, 0.12941177, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_w1foh")
+text = "Option"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=761577128]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99215686, 0.12941177, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxTexture_w1foh")
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="CenterContainer/PanelContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

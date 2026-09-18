@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://table.tscn" id="6_table"]
 [ext_resource type="PackedScene" uid="uid://opr7qfp6c23a" path="res://cc.fbx" id="7_71pa8"]
 [ext_resource type="PackedScene" path="res://basket_item.tscn" id="7_basket"]
+[ext_resource type="PackedScene" uid="uid://c201kqm66rjry" path="res://pause_menu.tscn" id="9_gqbix"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
 sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
@@ -415,3 +416,5 @@ transform = Transform3D(0.28255665, 0, -0.9592506, 0, 1, 0, 0.9592506, 0, 0.2825
 
 [node name="cc" parent="." unique_id=1785719288 instance=ExtResource("7_71pa8")]
 transform = Transform3D(0.12974487, 0, 0, 0, 0.2218256, 0, 0, 0, 0.55742186, -6.1847277, 3.9197657, 5.32451)
+
+[node name="PauseMenu" parent="." unique_id=2095433642 instance=ExtResource("9_gqbix")]
